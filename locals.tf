@@ -39,9 +39,9 @@ locals {
   
   # Bonding summary
   bonding_summary = {
-    total       = length(var.bonding_interfaces)
-    lacp_count  = length([for k, v in var.bonding_interfaces : k if v.mode == "802.3ad"])
-    total_slaves = sum([for k, v in var.bonding_interfaces : length(v.slaves)])
+    total        = length(var.bonding_interfaces)
+    lacp_count   = length([for k, v in var.bonding_interfaces : k if v.mode == "802.3ad"])
+    total_slaves = length(var.bonding_interfaces) > 0 ? sum([for k, v in var.bonding_interfaces : length(v.slaves)]) : 0
   }
   
   # Interface lists summary

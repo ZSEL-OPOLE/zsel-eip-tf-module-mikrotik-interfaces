@@ -2,6 +2,9 @@
 # MikroTik Interfaces Module - Validation Tests
 # =============================================================================
 
+# Mock provider configuration for testing without real RouterOS device
+mock_provider "routeros" {}
+
 # Test 1: Invalid PVID (out of range 1-4094)
 run "invalid_pvid_too_high" {
   command = plan

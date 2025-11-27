@@ -2,6 +2,9 @@
 # MikroTik Interfaces Module - Integration Tests
 # =============================================================================
 
+# Mock provider configuration for testing without real RouterOS device
+mock_provider "routeros" {}
+
 # Test 1: Complete network setup (bridge + VLANs + ports)
 run "complete_network_setup" {
   command = plan

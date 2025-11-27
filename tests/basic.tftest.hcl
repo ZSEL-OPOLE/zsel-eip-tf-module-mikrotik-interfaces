@@ -2,6 +2,9 @@
 # MikroTik Interfaces Module - Basic Functionality Tests
 # =============================================================================
 
+# Mock provider configuration for testing without real RouterOS device
+mock_provider "routeros" {}
+
 # Test 1: Create single bridge
 run "single_bridge" {
   command = plan

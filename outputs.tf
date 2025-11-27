@@ -76,18 +76,20 @@ output "bonding_interfaces" {
   }
 }
 
-output "ethernet_settings" {
-  description = "Configured ethernet interfaces"
-  value = {
-    for k, v in routeros_interface_ethernet.this :
-    k => {
-      name   = v.name
-      speed  = v.speed
-      duplex = v.duplex
-      mtu    = v.mtu
-    }
-  }
-}
+# Ethernet settings not supported by terraform-routeros/routeros provider
+# Physical ethernet configuration must be done via RouterOS CLI/WinBox
+# output "ethernet_settings" {
+#   description = "Configured ethernet interfaces"
+#   value = {
+#     for k, v in routeros_interface_ethernet.this :
+#     k => {
+#       name   = v.name
+#       speed  = v.speed
+#       duplex = v.duplex
+#       mtu    = v.mtu
+#     }
+#   }
+# }
 
 # Aggregated outputs for easy consumption
 output "all_interfaces" {
