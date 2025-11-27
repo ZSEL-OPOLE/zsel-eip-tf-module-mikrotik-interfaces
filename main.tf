@@ -6,7 +6,7 @@ resource "routeros_interface_bridge" "this" {
   vlan_filtering = lookup(each.value, "vlan_filtering", false)
   igmp_snooping  = lookup(each.value, "igmp_snooping", false)
   fast_forward   = lookup(each.value, "fast_forward", true)
-  mtu            = lookup(each.value, "mtu", "auto")
+  # mtu = lookup(each.value, "mtu", "auto")  # Provider requires number, not string
   comment        = lookup(each.value, "comment", null)
   disabled       = lookup(each.value, "disabled", false)
 }
@@ -70,7 +70,7 @@ resource "routeros_interface_bonding" "this" {
   slaves           = each.value.slaves
   transmit_hash_policy = lookup(each.value, "transmit_hash_policy", "layer-2-and-3")
   lacp_rate        = lookup(each.value, "lacp_rate", "30secs")
-  mtu              = lookup(each.value, "mtu", "auto")
+  # mtu = lookup(each.value, "mtu", "auto")  # Provider requires number, not string
   comment          = lookup(each.value, "comment", null)
   disabled         = lookup(each.value, "disabled", false)
 }

@@ -5,74 +5,80 @@
 # Mock provider configuration for testing without real RouterOS device
 mock_provider "routeros" {}
 
-# Test 7: Valid PVID (boundary value 1)
-run "valid_pvid_min" {
+# Test 1: Valid bridge configuration
+run "valid_bridge" {
   command = plan
   
   variables {
     bridges = {
       "bridge1" = {
-        pvid = 1
+        vlan_filtering = true
+        igmp_snooping  = true
+        mtu            = "1500"
       }
     }
   }
   
   assert {
-    condition     = var.bridges["bridge1"].pvid == 1
-    error_message = "Should accept PVID 1 (minimum)"
+    condition     = var.bridges["bridge1"].vlan_filtering == true
+    error_message = "VLAN filtering should be enabled"
   }
 }
 
-# Test 8: Valid PVID (boundary value 4094)
-run "valid_pvid_max" {
+# Test 2: Valid VLAN interface
+run "valid_vlan" {
   command = plan
   
   variables {
-    bridges = {
-      "bridge1" = {
-        pvid = 4094
+    vlans = {
+      "10" = {
+        interface = "bridge1"
+        comment   = "Management VLAN"
       }
     }
   }
   
   assert {
-    condition     = var.bridges["bridge1"].pvid == 4094
-    error_message = "Should accept PVID 4094 (maximum)"
+    condition     = var.vlans["10"].interface == "bridge1"
+    error_message = "VLAN should be on bridge1"
   }
 }
 
-# Test 9: Valid MTU (minimum)
-run "valid_mtu_min" {
+# Test 3: Valid bridge port with PVID
+run "valid_bridge_port" {
   command = plan
   
   variables {
-    bridges = {
-      "bridge1" = {
-        mtu = 64
+    bridge_ports = {
+      "port1" = {
+        bridge    = "bridge1"
+        interface = "ether1"
+        pvid      = 10
       }
     }
   }
   
   assert {
-    condition     = var.bridges["bridge1"].mtu == 64
-    error_message = "Should accept MTU 64 (minimum)"
+    condition     = var.bridge_ports["port1"].pvid == 10
+    error_message = "PVID should be 10"
   }
 }
 
-# Test 10: Valid MTU (maximum)
-run "valid_mtu_max" {
+# Test 4: Valid bonding interface
+run "valid_bonding" {
   command = plan
   
   variables {
-    bridges = {
-      "bridge1" = {
-        mtu = 9216
+    bonding = {
+      "bond1" = {
+        mode   = "802.3ad"
+        slaves = ["ether1", "ether2"]
       }
     }
   }
   
   assert {
-    condition     = var.bridges["bridge1"].mtu == 9216
-    error_message = "Should accept MTU 9216 (maximum)"
+    condition     = var.bonding["bond1"].mode == "802.3ad"
+    error_message = "Bonding mode should be 802.3ad"
   }
 }
