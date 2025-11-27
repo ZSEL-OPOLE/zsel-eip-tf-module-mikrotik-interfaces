@@ -30,12 +30,12 @@ resource "routeros_interface_bridge_port" "this" {
 resource "routeros_interface_vlan" "this" {
   for_each = var.vlans
   
-  name      = lookup(each.value, "name", "vlan${each.key}")
+  name      = coalesce(each.value.name, "vlan${each.key}")
   vlan_id   = tonumber(each.key)
   interface = each.value.interface
-  mtu       = lookup(each.value, "mtu", "auto")
-  comment   = lookup(each.value, "comment", null)
-  disabled  = lookup(each.value, "disabled", false)
+  mtu       = each.value.mtu
+  comment   = each.value.comment
+  disabled  = each.value.disabled
   
   depends_on = [routeros_interface_bridge.this]
 }

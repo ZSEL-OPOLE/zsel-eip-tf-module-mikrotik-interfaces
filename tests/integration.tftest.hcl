@@ -26,9 +26,9 @@ run "complete_network_setup" {
     }
     
     vlans = {
-      "vlan10" = { vlan_id = 10, interface = "bridge1", comment = "Management" }
-      "vlan20" = { vlan_id = 20, interface = "bridge1", comment = "Users" }
-      "vlan30" = { vlan_id = 30, interface = "bridge1", comment = "Guest" }
+      "10" = { vlan_id = 10, interface = "bridge1", comment = "Management" }
+      "20" = { vlan_id = 20, interface = "bridge1", comment = "Users" }
+      "30" = { vlan_id = 30, interface = "bridge1", comment = "Guest" }
     }
   }
   
@@ -67,16 +67,16 @@ run "enterprise_46_vlans" {
     }
     
     vlans = {
-      "vlan10"  = { vlan_id = 10,  interface = "bridge1", comment = "K3s Cluster" }
-      "vlan20"  = { vlan_id = 20,  interface = "bridge1", comment = "Storage" }
-      "vlan30"  = { vlan_id = 30,  interface = "bridge1", comment = "LoadBalancer" }
-      "vlan40"  = { vlan_id = 40,  interface = "bridge1", comment = "Endpoints" }
-      "vlan50"  = { vlan_id = 50,  interface = "bridge1", comment = "VPN" }
-      "vlan100" = { vlan_id = 100, interface = "bridge1", comment = "WiFi 1a" }
-      "vlan101" = { vlan_id = 101, interface = "bridge1", comment = "WiFi 1b" }
-      "vlan102" = { vlan_id = 102, interface = "bridge1", comment = "WiFi 1c" }
-      "vlan103" = { vlan_id = 103, interface = "bridge1", comment = "WiFi 1d" }
-      "vlan104" = { vlan_id = 104, interface = "bridge1", comment = "WiFi 1e" }
+      "10" = { vlan_id = 10,  interface = "bridge1", comment = "K3s Cluster" }
+      "20" = { vlan_id = 20,  interface = "bridge1", comment = "Storage" }
+      "30" = { vlan_id = 30,  interface = "bridge1", comment = "LoadBalancer" }
+      "40" = { vlan_id = 40,  interface = "bridge1", comment = "Endpoints" }
+      "50" = { vlan_id = 50,  interface = "bridge1", comment = "VPN" }
+      "100" = { vlan_id = 100, interface = "bridge1", comment = "WiFi 1a" }
+      "101" = { vlan_id = 101, interface = "bridge1", comment = "WiFi 1b" }
+      "102" = { vlan_id = 102, interface = "bridge1", comment = "WiFi 1c" }
+      "103" = { vlan_id = 103, interface = "bridge1", comment = "WiFi 1d" }
+      "104" = { vlan_id = 104, interface = "bridge1", comment = "WiFi 1e" }
       # Add more VLANs as needed for full 46-VLAN test
     }
   }
@@ -102,8 +102,8 @@ run "lacp_with_vlans" {
     }
     
     vlans = {
-      "vlan10" = { vlan_id = 10, interface = "bond0", comment = "VLAN on bond" }
-      "vlan20" = { vlan_id = 20, interface = "bond0", comment = "VLAN on bond" }
+      "10" = { vlan_id = 10, interface = "bond0", comment = "VLAN on bond" }
+      "20" = { vlan_id = 20, interface = "bond0", comment = "VLAN on bond" }
     }
   }
   
@@ -158,9 +158,9 @@ run "outputs_comprehensive" {
     }
     
     vlans = {
-      "vlan10" = { vlan_id = 10, interface = "bridge1" }
-      "vlan20" = { vlan_id = 20, interface = "bridge1" }
-      "vlan30" = { vlan_id = 30, interface = "bridge1" }
+      "10" = { vlan_id = 10, interface = "bridge1" }
+      "20" = { vlan_id = 20, interface = "bridge1" }
+      "30" = { vlan_id = 30, interface = "bridge1" }
     }
     
     bonding_interfaces = {

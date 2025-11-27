@@ -34,7 +34,7 @@ run "single_vlan" {
   
   variables {
     vlans = {
-      "vlan10" = {
+      "10" = {
         vlan_id   = 10
         interface = "bridge1"
         comment   = "Management VLAN"
